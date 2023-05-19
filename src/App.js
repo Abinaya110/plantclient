@@ -5,6 +5,7 @@ import Switch from '@mui/material/Switch';
 import Light1 from './Light1';
 import MyTable from './MyTable';
 import Fan from './Fan';
+import { Button } from '@mui/material';
 function App() {
   const [checked, setChecked] =useState(true);
 
@@ -46,6 +47,14 @@ else{
 }
   
 }  
+
+
+const sensorstart=()=>{
+  fetch('http://localhost:5001/')
+  .then(res=>res.json())
+  .then(data=> console.log(data))
+  .catch(err=>console.log(err))
+}
    
   return (
     <div className="App">
@@ -58,6 +67,8 @@ else{
       onChange={handleChange}
       inputProps={{ 'aria-label': 'controlled' }}
     />
+
+    <Button onClick={sensorstart}>Start Sensor</Button>
       <header className="App-header">
        { checked ? 
        <div>
@@ -73,8 +84,9 @@ else{
        }
 
        <br/>
-       <MyTable/>
+      
       </header>
+      <MyTable/>
     </div>
   );
 }
